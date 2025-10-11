@@ -768,6 +768,9 @@ code:not(.code-block code) {
     transition: background-color 0.3s ease;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .article-card:hover {
@@ -799,6 +802,7 @@ code:not(.code-block code) {
     font-size: 0.8rem;
     color: var(--text-secondary);
     min-height: 2rem;
+    margin-top: auto;
 }
 
 .article-meta span {
