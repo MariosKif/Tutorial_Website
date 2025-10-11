@@ -756,10 +756,13 @@ code:not(.code-block code) {
 /* Article listing styles */
 .article-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
     margin: 2rem 0;
     align-items: stretch;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .article-card {
@@ -1205,13 +1208,16 @@ code:not(.code-block code) {
 /* Responsive design */
 @media (max-width: 1200px) {
     .article-grid {
-        grid-template-columns: repeat(3, 1fr);
+        max-width: 1000px;
+        gap: 1.5rem;
     }
 }
 
 @media (max-width: 768px) {
     .article-grid {
-        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
     .sidebar {
         transform: translateX(-100%);
@@ -1334,6 +1340,7 @@ code:not(.code-block code) {
     
     .article-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
     
     .tutorial-content {
