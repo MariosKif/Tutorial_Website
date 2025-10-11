@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import TutorialLayout from '../../layouts/TutorialLayout.astro';
 
 export async function getStaticPaths() {
-  const htmlTutorials = await getCollection('html-tutorials');
+  const htmlTutorials = await getCollection('external-html-tutorials');
   return htmlTutorials.map((tutorial) => ({
     params: { slug: tutorial.slug },
     props: { tutorial },

@@ -3,8 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import LearningPath from '../../components/LearningPath.astro';
 import { getCollection } from 'astro:content';
 
-// Get all HTML tutorials
-const htmlTutorials = await getCollection('html-tutorials');
+// Get all HTML tutorials from external repository
+const htmlTutorials = await getCollection('external-html-tutorials');
 const publishedTutorials = htmlTutorials.filter(tutorial => tutorial.data.published);
 ---
 
@@ -21,7 +21,7 @@ const publishedTutorials = htmlTutorials.filter(tutorial => tutorial.data.publis
       courseName="HTML"
       courseIcon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
       courseColor="#e34c26"
-      collectionName="html-tutorials"
+      collectionName="external-html-tutorials"
     />
 
     <!-- Search and filters -->

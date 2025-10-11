@@ -7,10 +7,10 @@ let cssCount = 0;
 let javascriptCount = 0;
 
 try {
-  const htmlTutorials = await getCollection('html-tutorials');
+  const htmlTutorials = await getCollection('external-html-tutorials');
   htmlCount = htmlTutorials.filter(t => t.data.published !== false).length;
 } catch (error) {
-  console.warn('HTML tutorials collection not found');
+  console.warn('External HTML tutorials collection not found');
 }
 
 try {
