@@ -36,7 +36,31 @@ const { title, description = "Learn web development from the ground up! Comprehe
     (function() {
       // Check for saved theme preference or default to light mode
       const savedTheme = localStorage.getItem('theme') || 'light';
+      
+      // Apply theme immediately
       document.documentElement.setAttribute('data-theme', savedTheme);
+      
+      // Force dark background immediately if dark theme
+      if (savedTheme === 'dark') {
+        document.documentElement.style.backgroundColor = '#1a1a1a';
+        document.documentElement.style.color = '#e0e0e0';
+      }
+      
+      // Show content once theme is applied
+      function showContent() {
+        if (document.body) {
+          document.body.classList.add('theme-loaded');
+        } else {
+          // If body doesn't exist yet, wait for it
+          setTimeout(showContent, 10);
+        }
+      }
+      
+      // Try to show content immediately
+      showContent();
+      
+      // Also listen for DOMContentLoaded as backup
+      document.addEventListener('DOMContentLoaded', showContent);
     })();
   </script>
   

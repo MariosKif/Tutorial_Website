@@ -19,6 +19,17 @@ html {
     color: var(--text-primary);
 }
 
+/* Hide content until theme is loaded to prevent flash */
+body {
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+}
+
+/* Show content once theme is applied */
+body.theme-loaded {
+    opacity: 1;
+}
+
 [data-theme="dark"] {
     --bg-primary: #1a1a1a;
     --bg-secondary: #2d2d2d;
@@ -31,6 +42,17 @@ html {
     --accent-secondary: #42a5f5;
     --border-color: #404040;
     --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Force dark theme colors immediately when dark theme is detected */
+[data-theme="dark"] html {
+    background-color: #1a1a1a !important;
+    color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] body {
+    background-color: #1a1a1a !important;
+    color: #e0e0e0 !important;
 }
 
 /* Import modern fonts similar to javascript.info */
