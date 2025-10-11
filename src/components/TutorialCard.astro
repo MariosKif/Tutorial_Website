@@ -68,6 +68,7 @@ const difficultyStyle = difficultyColors[difficulty];
     max-width: 100%;
     border: 1px solid var(--border-color);
     box-sizing: border-box;
+    position: relative;
   }
 
   .tutorial-card:hover {
@@ -119,6 +120,8 @@ const difficultyStyle = difficultyColors[difficulty];
     flex-shrink: 0;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
   }
 
   .tutorial-meta span {
@@ -147,13 +150,19 @@ const difficultyStyle = difficultyColors[difficulty];
     font-size: 0.75rem;
     white-space: nowrap;
     min-width: 70px;
+    max-width: 70px;
     text-align: center;
     display: inline-block;
+    flex-shrink: 0;
+    position: relative;
   }
 
   .tutorial-read-time {
     color: var(--text-secondary);
     font-size: 0.8rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+    position: relative;
   }
 
   .tutorial-tags {

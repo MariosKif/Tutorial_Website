@@ -286,8 +286,12 @@ function initializePageFilters() {
             
             if (matchesSearch && matchesDifficulty && matchesTopic) {
                 card.style.display = 'flex';
+                card.style.visibility = 'visible';
+                card.style.opacity = '1';
             } else {
                 card.style.display = 'none';
+                card.style.visibility = 'hidden';
+                card.style.opacity = '0';
             }
         });
     }
