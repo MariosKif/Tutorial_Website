@@ -317,6 +317,13 @@ button {
     line-height: 1.4;
 }
 
+.search-result-meta {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
 .search-result-category {
     display: inline-block;
     background-color: var(--accent-primary);
@@ -327,6 +334,17 @@ button {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+.search-result-type {
+    display: inline-block;
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
 }
 
 .search-results.no-results .search-results-content {

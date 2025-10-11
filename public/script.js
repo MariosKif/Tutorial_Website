@@ -138,7 +138,10 @@ function initializeSearch() {
                     <div class="search-result-content">
                         <h4>${highlightSearchTerm(result.title, searchTerm)}</h4>
                         <p>${result.description}</p>
-                        <span class="search-result-category">${result.category}</span>
+                        <div class="search-result-meta">
+                            <span class="search-result-category">${result.category}</span>
+                            <span class="search-result-type">Tutorial</span>
+                        </div>
                     </div>
                 </a>
             `;
