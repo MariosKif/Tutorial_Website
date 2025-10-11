@@ -1037,14 +1037,7 @@ code:not(.code-block code) {
     box-sizing: border-box;
 }
 
-/* Tutorial card styles - now handled by component */
-.tutorial-card {
-    /* Styles are now in the TutorialCard.astro component */
-}
-
-/* Legacy article-card styles - now using TutorialCard component */
-
-/* Difficulty styles now handled by TutorialCard component */
+/* Tutorial card styles are now handled by the TutorialCard.astro component */
 
 /* Pagination styles */
 .pagination {
@@ -1133,7 +1126,6 @@ code:not(.code-block code) {
     box-sizing: border-box;
 }
 
-/* Search input removed */
 
 .filter-select {
     padding: 0.75rem 1rem;
