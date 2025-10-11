@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourseHeader from '../../components/CourseHeader.astro';
 import LearningPath from '../../components/LearningPath.astro';
 import TutorialCard from '../../components/TutorialCard.astro';
 import { getCollection } from 'astro:content';
@@ -11,11 +12,16 @@ const publishedTutorials = htmlTutorials.filter(tutorial => tutorial.data.publis
 
 <BaseLayout title="HTML Tutorials - Web Tutorials" description="Master the structure and markup language of the web. Learn how to create semantic, accessible web pages with our comprehensive HTML tutorials.">
   <div class="container">
-    <!-- Category header -->
-    <div class="category-header">
-      <h1>HTML Tutorials</h1>
-      <p>Master the structure and markup language of the web. Learn how to create semantic, accessible web pages with our comprehensive HTML tutorials.</p>
-    </div>
+    <!-- Course header -->
+    <CourseHeader
+      title="HTML Tutorials"
+      description="Master the structure and markup language of the web. Learn how to create semantic, accessible web pages with our comprehensive HTML tutorials."
+      iconUrl="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+      iconAlt="HTML5 Logo"
+      courseColor="#e34c26"
+      totalTutorials={publishedTutorials.length}
+      lastUpdated="December 2024"
+    />
 
     <!-- Learning Path -->
     <LearningPath 

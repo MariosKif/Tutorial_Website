@@ -1,0 +1,171 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  iconUrl: string;
+  iconAlt: string;
+  courseColor: string;
+  totalTutorials: number;
+  lastUpdated?: string;
+}
+
+const { title, description, iconUrl, iconAlt, courseColor, totalTutorials, lastUpdated } = Astro.props;
+---
+
+<header class="course-header">
+  <div class="course-header-content">
+    <div class="course-icon">
+      <img src={iconUrl} alt={iconAlt} width="48" height="48" />
+    </div>
+    <div class="course-info">
+      <h1 class="course-title">{title}</h1>
+      <p class="course-description">{description}</p>
+      <div class="course-meta">
+        <span class="tutorial-count">{totalTutorials} Tutorials</span>
+        {lastUpdated && <span class="last-updated">Updated {lastUpdated}</span>}
+      </div>
+    </div>
+  </div>
+  <div class="course-header-divider"></div>
+</header>
+
+<style>
+  .course-header {
+    margin-bottom: 3rem;
+    padding: 0;
+  }
+
+  .course-header-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .course-icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+
+  .course-icon img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+
+  .course-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .course-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .course-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin: 0 0 1rem 0;
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .course-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tutorial-count {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.8rem;
+    background: var(--accent-primary);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .last-updated {
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+    font-weight: 500;
+  }
+
+  .course-header-divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-primary) 0%, transparent 100%);
+    border-radius: 1px;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .course-header {
+      margin-bottom: 2rem;
+    }
+
+    .course-header-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .course-icon {
+      width: 56px;
+      height: 56px;
+    }
+
+    .course-icon img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .course-title {
+      font-size: 2rem;
+    }
+
+    .course-description {
+      font-size: 1rem;
+    }
+
+    .course-meta {
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .course-title {
+      font-size: 1.75rem;
+    }
+
+    .course-description {
+      font-size: 0.95rem;
+    }
+
+    .course-meta {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+  }
+</style>

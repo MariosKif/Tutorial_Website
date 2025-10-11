@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourseHeader from '../../components/CourseHeader.astro';
 import LearningPath from '../../components/LearningPath.astro';
 import TutorialCard from '../../components/TutorialCard.astro';
 import { getCollection } from 'astro:content';
@@ -14,11 +15,16 @@ const publishedTutorials = cssTutorials.filter(tutorial => tutorial.data.publish
   description="Learn CSS with our comprehensive tutorials. Master styling and layout for modern web applications."
 >
   <div class="container">
-    <!-- Category header -->
-    <div class="category-header">
-      <h1>CSS Tutorials</h1>
-      <p>Master the styling language of the web. Learn how to create beautiful, responsive designs with our comprehensive CSS tutorials.</p>
-    </div>
+    <!-- Course header -->
+    <CourseHeader
+      title="CSS Tutorials"
+      description="Master the styling language of the web. Learn how to create beautiful, responsive designs with our comprehensive CSS tutorials."
+      iconUrl="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+      iconAlt="CSS3 Logo"
+      courseColor="#1572b6"
+      totalTutorials={publishedTutorials.length}
+      lastUpdated="December 2024"
+    />
 
     <!-- Learning Path -->
     <LearningPath 

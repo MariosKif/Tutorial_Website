@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourseHeader from '../../components/CourseHeader.astro';
 import LearningPath from '../../components/LearningPath.astro';
 import TutorialCard from '../../components/TutorialCard.astro';
 import { getCollection } from 'astro:content';
@@ -14,11 +15,16 @@ const publishedTutorials = javascriptTutorials.filter(tutorial => tutorial.data.
   description="Learn JavaScript with our comprehensive tutorials. Master the programming language that powers the modern web."
 >
   <div class="container">
-    <!-- Category header -->
-    <div class="category-header">
-      <h1>JavaScript Tutorials</h1>
-      <p>Master the programming language that powers the modern web. Learn JavaScript from basics to advanced concepts with our comprehensive tutorials.</p>
-    </div>
+    <!-- Course header -->
+    <CourseHeader
+      title="JavaScript Tutorials"
+      description="Master the programming language that powers the modern web. Learn JavaScript from basics to advanced concepts with our comprehensive tutorials."
+      iconUrl="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+      iconAlt="JavaScript Logo"
+      courseColor="#f7df1e"
+      totalTutorials={publishedTutorials.length}
+      lastUpdated="December 2024"
+    />
 
     <!-- Learning Path -->
     <LearningPath 
