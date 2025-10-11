@@ -1026,7 +1026,7 @@ code:not(.code-block code) {
 .article-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(346px, 369px));
-    gap: 1.98rem;
+    gap: 1.96rem;
     margin: 2rem 0;
     align-items: stretch;
     width: 100%;
@@ -1422,7 +1422,7 @@ code:not(.code-block code) {
 /* Responsive design */
 @media (max-width: 1200px) {
     .article-grid {
-        gap: 1.485rem;
+        gap: 1.47rem;
         grid-template-columns: repeat(auto-fit, minmax(323px, 346px));
         justify-content: start;
     }
@@ -1430,7 +1430,7 @@ code:not(.code-block code) {
 
 @media (max-width: 768px) {
     .article-grid {
-        gap: 1.2375rem;
+        gap: 1.225rem;
         grid-template-columns: repeat(auto-fit, minmax(288px, 323px));
         justify-content: start;
     }
