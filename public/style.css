@@ -1032,7 +1032,7 @@ code:not(.code-block code) {
     width: 100%;
     position: relative;
     z-index: 1;
-    justify-content: start;
+    justify-content: space-between;
     max-width: 100%;
     box-sizing: border-box;
 }
@@ -1424,7 +1424,7 @@ code:not(.code-block code) {
     .article-grid {
         gap: 1.425rem;
         grid-template-columns: repeat(auto-fit, minmax(310px, 331px));
-        justify-content: start;
+        justify-content: space-between;
     }
 }
 
@@ -1432,7 +1432,7 @@ code:not(.code-block code) {
     .article-grid {
         gap: 1.1875rem;
         grid-template-columns: repeat(auto-fit, minmax(277px, 310px));
-        justify-content: start;
+        justify-content: space-between;
     }
     .sidebar {
         transform: translateX(-100%);
