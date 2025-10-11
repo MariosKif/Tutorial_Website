@@ -43,8 +43,195 @@ function updateThemeIcon(theme) {
     }
 }
 
+// Search functionality
+function initializeSearch() {
+    const searchInput = document.getElementById('globalSearch');
+    const searchBtn = document.querySelector('.search-btn');
+    
+    if (!searchInput || !searchBtn) return;
+    
+    // Search function
+    function performSearch(query) {
+        if (!query.trim()) return;
+        
+        // Convert query to lowercase for case-insensitive search
+        const searchTerm = query.toLowerCase().trim();
+        
+        // Define searchable content - tutorials and categories
+        const searchableContent = [
+            // HTML Tutorials
+            { title: 'HTML Introduction', url: '/tutorialwebsite/html/introduction', category: 'HTML', description: 'Learn the basics of HTML structure and syntax' },
+            { title: 'HTML Elements and Tags', url: '/tutorialwebsite/html/elements-and-tags', category: 'HTML', description: 'Understanding HTML elements, tags, and attributes' },
+            
+            // CSS Tutorials
+            { title: 'CSS Basics', url: '/tutorialwebsite/css/basics', category: 'CSS', description: 'Introduction to CSS styling and selectors' },
+            { title: 'CSS Selectors', url: '/tutorialwebsite/css/selectors', category: 'CSS', description: 'Learn different types of CSS selectors' },
+            { title: 'CSS Flexbox', url: '/tutorialwebsite/css/flexbox', category: 'CSS', description: 'Master CSS Flexbox layout' },
+            { title: 'CSS Grid', url: '/tutorialwebsite/css/grid', category: 'CSS', description: 'Learn CSS Grid layout system' },
+            { title: 'CSS Animations', url: '/tutorialwebsite/css/animations', category: 'CSS', description: 'Create beautiful CSS animations' },
+            
+            // JavaScript Tutorials
+            { title: 'JavaScript Introduction', url: '/tutorialwebsite/javascript/intro', category: 'JavaScript', description: 'Get started with JavaScript programming' },
+            { title: 'JavaScript Variables', url: '/tutorialwebsite/javascript/variables', category: 'JavaScript', description: 'Learn about variables and data types' },
+            { title: 'JavaScript Functions', url: '/tutorialwebsite/javascript/functions', category: 'JavaScript', description: 'Understanding functions in JavaScript' },
+            { title: 'JavaScript Async', url: '/tutorialwebsite/javascript/async', category: 'JavaScript', description: 'Asynchronous JavaScript concepts' },
+            
+            // Categories
+            { title: 'HTML Tutorials', url: '/tutorialwebsite/html/', category: 'Category', description: 'Complete HTML learning path' },
+            { title: 'CSS Tutorials', url: '/tutorialwebsite/css/', category: 'Category', description: 'Complete CSS learning path' },
+            { title: 'JavaScript Tutorials', url: '/tutorialwebsite/javascript/', category: 'Category', description: 'Complete JavaScript learning path' }
+        ];
+        
+        // Filter content based on search term
+        const results = searchableContent.filter(item => 
+            item.title.toLowerCase().includes(searchTerm) ||
+            item.description.toLowerCase().includes(searchTerm) ||
+            item.category.toLowerCase().includes(searchTerm)
+        );
+        
+        // Display results
+        displaySearchResults(results, searchTerm);
+    }
+    
+    // Display search results
+    function displaySearchResults(results, searchTerm) {
+        // Remove existing search results
+        const existingResults = document.getElementById('searchResults');
+        if (existingResults) {
+            existingResults.remove();
+        }
+        
+        if (results.length === 0) {
+            showNoResults(searchTerm);
+            return;
+        }
+        
+        // Create results container
+        const resultsContainer = document.createElement('div');
+        resultsContainer.id = 'searchResults';
+        resultsContainer.className = 'search-results';
+        
+        // Create results HTML
+        let resultsHTML = `
+            <div class="search-results-header">
+                <h3>Search Results for "${searchTerm}"</h3>
+                <button class="close-search" onclick="closeSearchResults()">×</button>
+            </div>
+            <div class="search-results-list">
+        `;
+        
+        results.forEach(result => {
+            resultsHTML += `
+                <a href="${result.url}" class="search-result-item">
+                    <div class="search-result-content">
+                        <h4>${highlightSearchTerm(result.title, searchTerm)}</h4>
+                        <p>${result.description}</p>
+                        <span class="search-result-category">${result.category}</span>
+                    </div>
+                </a>
+            `;
+        });
+        
+        resultsHTML += '</div>';
+        resultsContainer.innerHTML = resultsHTML;
+        
+        // Insert results after the search bar
+        const navCenter = document.querySelector('.nav-center');
+        navCenter.appendChild(resultsContainer);
+        
+        // Add click outside to close
+        setTimeout(() => {
+            document.addEventListener('click', handleClickOutside);
+        }, 100);
+    }
+    
+    // Highlight search term in results
+    function highlightSearchTerm(text, searchTerm) {
+        const regex = new RegExp(`(${searchTerm})`, 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+    }
+    
+    // Show no results message
+    function showNoResults(searchTerm) {
+        const resultsContainer = document.createElement('div');
+        resultsContainer.id = 'searchResults';
+        resultsContainer.className = 'search-results no-results';
+        resultsContainer.innerHTML = `
+            <div class="search-results-header">
+                <h3>No Results Found</h3>
+                <button class="close-search" onclick="closeSearchResults()">×</button>
+            </div>
+            <div class="search-results-content">
+                <p>No tutorials found for "${searchTerm}"</p>
+                <p>Try searching for:</p>
+                <ul>
+                    <li>HTML, CSS, JavaScript</li>
+                    <li>Elements, Tags, Selectors</li>
+                    <li>Variables, Functions, Animations</li>
+                </ul>
+            </div>
+        `;
+        
+        const navCenter = document.querySelector('.nav-center');
+        navCenter.appendChild(resultsContainer);
+        
+        setTimeout(() => {
+            document.addEventListener('click', handleClickOutside);
+        }, 100);
+    }
+    
+    // Close search results
+    function closeSearchResults() {
+        const results = document.getElementById('searchResults');
+        if (results) {
+            results.remove();
+        }
+        document.removeEventListener('click', handleClickOutside);
+    }
+    
+    // Handle clicks outside search results
+    function handleClickOutside(event) {
+        const searchResults = document.getElementById('searchResults');
+        const searchContainer = document.querySelector('.nav-search');
+        
+        if (searchResults && !searchResults.contains(event.target) && !searchContainer.contains(event.target)) {
+            closeSearchResults();
+        }
+    }
+    
+    // Make closeSearchResults globally available
+    window.closeSearchResults = closeSearchResults;
+    
+    // Event listeners
+    searchBtn.addEventListener('click', () => {
+        const query = searchInput.value.trim();
+        if (query) {
+            performSearch(query);
+        }
+    });
+    
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const query = searchInput.value.trim();
+            if (query) {
+                performSearch(query);
+            }
+        }
+    });
+    
+    // Clear results when input is cleared
+    searchInput.addEventListener('input', (e) => {
+        if (!e.target.value.trim()) {
+            closeSearchResults();
+        }
+    });
+}
+
 // Initialize page functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize search functionality
+    initializeSearch();
+    
     // Sidebar toggle functionality
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');
