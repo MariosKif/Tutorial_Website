@@ -795,24 +795,25 @@ code:not(.code-block code) {
     border-top: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     font-size: 0.8rem;
     color: var(--text-secondary);
     min-height: 2rem;
 }
 
-.article-meta span:not(.article-difficulty) {
+.article-meta span {
+    display: flex;
+    align-items: center;
     font-size: 0.8rem;
-    line-height: 1.2;
+    line-height: 1;
+    height: 1.6rem;
 }
 
 .article-difficulty {
     padding: 0.25rem 0.5rem;
     border-radius: 12px;
-    font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
-    line-height: 1.2;
 }
 
 .difficulty-beginner {
