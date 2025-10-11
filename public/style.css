@@ -772,7 +772,7 @@ code:not(.code-block code) {
     display: flex;
     flex-direction: column;
     height: 100%;
-    min-height: 260px;
+    min-height: 280px;
 }
 
 .article-card:hover {
@@ -781,7 +781,7 @@ code:not(.code-block code) {
 }
 
 .article-card h3 {
-    padding: 0.75rem 0.75rem 0.25rem;
+    padding: 1rem 1rem 0.5rem;
     color: var(--accent-primary);
     font-size: 1.2rem;
     margin: 0;
@@ -789,7 +789,7 @@ code:not(.code-block code) {
 }
 
 .article-card p {
-    padding: 0 0.75rem 0.75rem;
+    padding: 0 1rem 1rem;
     color: var(--text-secondary);
     font-size: 0.9rem;
     margin: 0;
@@ -797,7 +797,7 @@ code:not(.code-block code) {
 }
 
 .article-meta {
-    padding: 0.5rem 0.75rem;
+    padding: 0.75rem 1rem;
     background-color: var(--bg-primary);
     border-top: 1px solid var(--border-color);
     display: flex;
