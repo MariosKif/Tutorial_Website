@@ -795,8 +795,17 @@ code:not(.code-block code) {
     border-top: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 0.8rem;
     color: var(--text-secondary);
+    min-height: 2rem;
+}
+
+.article-meta span:not(.article-difficulty) {
+    display: inline-flex;
+    align-items: center;
+    height: 1.5rem;
+    line-height: 1;
 }
 
 .article-difficulty {
@@ -805,6 +814,10 @@ code:not(.code-block code) {
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    height: 1.5rem;
+    line-height: 1;
 }
 
 .difficulty-beginner {
