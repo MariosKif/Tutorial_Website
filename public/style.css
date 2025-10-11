@@ -1025,7 +1025,7 @@ code:not(.code-block code) {
 /* Article listing styles */
 .article-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(346px, 369px));
+    grid-template-columns: repeat(auto-fit, minmax(342px, 365px));
     gap: 1.9rem;
     margin: 2rem 0;
     align-items: stretch;
@@ -1423,7 +1423,7 @@ code:not(.code-block code) {
 @media (max-width: 1200px) {
     .article-grid {
         gap: 1.425rem;
-        grid-template-columns: repeat(auto-fit, minmax(323px, 346px));
+        grid-template-columns: repeat(auto-fit, minmax(320px, 342px));
         justify-content: start;
     }
 }
@@ -1431,7 +1431,7 @@ code:not(.code-block code) {
 @media (max-width: 768px) {
     .article-grid {
         gap: 1.1875rem;
-        grid-template-columns: repeat(auto-fit, minmax(288px, 323px));
+        grid-template-columns: repeat(auto-fit, minmax(285px, 320px));
         justify-content: start;
     }
     .sidebar {
