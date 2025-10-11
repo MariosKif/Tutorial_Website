@@ -637,7 +637,7 @@ blockquote {
 .main-content {
     flex: 1;
     margin-left: 280px;
-    margin-top: 80px; /* Account for fixed header */
+    margin-top: 70px; /* Account for fixed header */
     padding: 1rem;
     width: calc(100% - 280px);
     box-sizing: border-box;
@@ -697,13 +697,13 @@ blockquote {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 20px;
+    padding: 0.75rem 20px;
     gap: 2rem;
 }
 
 .logo {
     color: var(--accent-primary);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: bold;
 }
 
