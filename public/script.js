@@ -255,60 +255,14 @@ function initializeSearch() {
     });
 }
 
-// Page-specific filters functionality
-function initializePageFilters() {
-    const searchInput = document.getElementById('searchInput');
-    const difficultyFilter = document.getElementById('difficultyFilter');
-    const topicFilter = document.getElementById('topicFilter');
-    const articleGrid = document.getElementById('articleGrid');
-    
-    if (!searchInput || !difficultyFilter || !topicFilter || !articleGrid) return;
-    
-    function filterCards() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const selectedDifficulty = difficultyFilter.value;
-        const selectedTopic = topicFilter.value;
-        
-        const cards = articleGrid.querySelectorAll('.tutorial-card');
-        
-        cards.forEach(card => {
-            const title = card.querySelector('h3 a').textContent.toLowerCase();
-            const description = card.querySelector('p').textContent.toLowerCase();
-            const difficulty = card.getAttribute('data-difficulty');
-            const category = card.getAttribute('data-category') || '';
-            
-            const matchesSearch = !searchTerm || 
-                title.includes(searchTerm) || 
-                description.includes(searchTerm);
-            
-            const matchesDifficulty = !selectedDifficulty || difficulty === selectedDifficulty;
-            const matchesTopic = !selectedTopic || category.toLowerCase().includes(selectedTopic);
-            
-            if (matchesSearch && matchesDifficulty && matchesTopic) {
-                card.style.display = 'flex';
-                card.style.visibility = 'visible';
-                card.style.opacity = '1';
-            } else {
-                card.style.display = 'none';
-                card.style.visibility = 'hidden';
-                card.style.opacity = '0';
-            }
-        });
-    }
-    
-    // Event listeners
-    searchInput.addEventListener('input', filterCards);
-    difficultyFilter.addEventListener('change', filterCards);
-    topicFilter.addEventListener('change', filterCards);
-}
+// Page-specific filters functionality removed - no longer needed
 
 // Initialize page functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize search functionality
     initializeSearch();
     
-    // Initialize page-specific functionality
-    initializePageFilters();
+    // Page-specific functionality removed (no more search filters on course pages)
     
     // Sidebar toggle functionality
     const sidebarToggle = document.getElementById('sidebarToggle');
