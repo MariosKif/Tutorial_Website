@@ -49,6 +49,8 @@ body {
     display: flex;
     min-height: calc(100vh - 140px); /* Subtract header and footer height */
     margin-top: 0;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* Sidebar styles */
@@ -200,6 +202,9 @@ body {
     margin-bottom: 60px; /* Account for fixed footer */
     padding: 2rem;
     min-height: calc(100vh - 200px); /* Account for header and footer */
+    width: calc(100% - 280px);
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 /* Mobile sidebar toggle */
@@ -490,13 +495,15 @@ body {
 
 /* Tutorial page styles */
 .tutorial-content {
-    max-width: 100%;
-    margin: 0;
+    max-width: 1200px;
+    margin: 0 auto;
     background: var(--bg-secondary);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 5px 15px var(--shadow);
     min-height: calc(100vh - 200px);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .tutorial-meta {
@@ -1117,8 +1124,10 @@ body {
     
     .tutorial-content {
         padding: 1rem;
-        margin: 0;
+        margin: 0 auto;
         max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .tutorial-content h1 {
@@ -1152,5 +1161,28 @@ body {
     
     .tutorial-card {
         padding: 1.5rem;
+    }
+    
+    .tutorial-content {
+        padding: 0.5rem;
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    .tutorial-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .tutorial-navigation {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .tutorial-navigation .btn {
+        margin-left: 0 !important;
+        width: 100%;
+        text-align: center;
     }
 }
