@@ -13,6 +13,12 @@
     --shadow: rgba(44, 62, 80, 0.1);
 }
 
+/* Prevent flash of unstyled content by setting default theme */
+html {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
 [data-theme="dark"] {
     --bg-primary: #1a1a1a;
     --bg-secondary: #2d2d2d;

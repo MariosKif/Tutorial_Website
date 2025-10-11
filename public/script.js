@@ -4,6 +4,8 @@
 // Log when the page loads
 console.log("Web Tutorials loaded");
 
+// Theme initialization is now handled in the HTML head to prevent flash
+
 // Dark mode toggle functionality
 function toggleDarkMode() {
     const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -54,9 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Theme toggle functionality
     const themeToggle = document.getElementById('themeToggle');
     
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', currentTheme);
+    // Update theme icon based on current theme (already set by immediate initialization)
+    const currentTheme = document.documentElement.getAttribute('data-theme');
     updateThemeIcon(currentTheme);
     
     if (themeToggle) {

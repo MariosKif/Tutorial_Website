@@ -31,6 +31,15 @@ const { title, description = "Learn web development from the ground up! Comprehe
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
   
+  <!-- IMMEDIATE THEME INITIALIZATION - prevents white flash -->
+  <script>
+    (function() {
+      // Check for saved theme preference or default to light mode
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+  
   <!-- Styles -->
   <link rel="stylesheet" href="/tutorialwebsite/style.css">
 </head>
