@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Web Tutorials - Learn HTML, CSS & JavaScript" description="Learn web development from the ground up! Our comprehensive tutorials will guide you through HTML, CSS, and JavaScript with clear explanations and practical examples.">
+  <div class="container">
+    <!-- Welcome section -->
+    <section class="welcome">
+      <h2>Welcome to Web Tutorials</h2>
+      <p class="welcome-text">
+        Learn web development from the ground up! Our comprehensive collection of tutorials covers 
+        HTML, CSS, and JavaScript with clear explanations and practical examples. Whether you're a 
+        complete beginner or looking to refresh your skills, we've got you covered with thousands 
+        of articles to help you master web development.
+      </p>
+      
+      <!-- Main categories -->
+      <div class="category-grid">
+        <div class="category-card">
+          <div class="category-icon">📄</div>
+          <h3>HTML</h3>
+          <p>Master the structure and markup language of the web. Learn how to create semantic, accessible web pages.</p>
+          <div class="category-stats">
+            <span class="article-count">1,200+ Articles</span>
+            <span class="difficulty">Beginner to Advanced</span>
+          </div>
+          <a href="/tutorialwebsite/html/" class="btn">Browse HTML Tutorials</a>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-icon">🎨</div>
+          <h3>CSS</h3>
+          <p>Style your web pages with CSS. Learn layouts, animations, responsive design, and modern CSS techniques.</p>
+          <div class="category-stats">
+            <span class="article-count">1,500+ Articles</span>
+            <span class="difficulty">Beginner to Advanced</span>
+          </div>
+          <a href="/tutorialwebsite/css/" class="btn">Browse CSS Tutorials</a>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-icon">⚡</div>
+          <h3>JavaScript</h3>
+          <p>Add interactivity and dynamic behavior to your websites. From basics to advanced frameworks and libraries.</p>
+          <div class="category-stats">
+            <span class="article-count">2,000+ Articles</span>
+            <span class="difficulty">Beginner to Advanced</span>
+          </div>
+          <a href="/tutorialwebsite/javascript/" class="btn">Browse JavaScript Tutorials</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

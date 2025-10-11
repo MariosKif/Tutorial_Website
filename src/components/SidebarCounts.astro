@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+
+// Get tutorial counts for each collection
+let htmlCount = 0;
+let cssCount = 0;
+let javascriptCount = 0;
+
+try {
+  const htmlTutorials = await getCollection('html-tutorials');
+  htmlCount = htmlTutorials.filter(t => t.data.published !== false).length;
+} catch (error) {
+  console.warn('HTML tutorials collection not found');
+}
+
+try {
+  const cssTutorials = await getCollection('css-tutorials');
+  cssCount = cssTutorials.filter(t => t.data.published !== false).length;
+} catch (error) {
+  console.warn('CSS tutorials collection not found');
+}
+
+try {
+  const javascriptTutorials = await getCollection('javascript-tutorials');
+  javascriptCount = javascriptTutorials.filter(t => t.data.published !== false).length;
+} catch (error) {
+  console.warn('JavaScript tutorials collection not found');
+}
+---
+
+<!-- This component doesn't render anything, it just provides the counts -->
+<script>
+  // Make counts available globally for the sidebar
+  window.tutorialCounts = {
+    html: {htmlCount},
+    css: {cssCount},
+    javascript: {javascriptCount}
+  };
+</script>

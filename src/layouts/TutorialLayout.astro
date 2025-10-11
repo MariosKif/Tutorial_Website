@@ -1,0 +1,39 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  category: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  readTime: string;
+}
+
+const { title, description, category, difficulty, readTime } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="container">
+    <div class="tutorial-content">
+      <h1>{title}</h1>
+      
+      <!-- Tutorial metadata -->
+      <div class="tutorial-meta">
+        <span class="tutorial-category">{category}</span>
+        <span class={`tutorial-difficulty difficulty-${difficulty}`}>
+          {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+        </span>
+        <span class="tutorial-read-time">{readTime}</span>
+      </div>
+      
+      <!-- Tutorial content -->
+      <slot />
+      
+      <!-- Navigation buttons -->
+      <div class="tutorial-navigation">
+        <a href={`/tutorialwebsite/${category.toLowerCase()}/`} class="btn">Browse More {category} Tutorials</a>
+        <a href="/tutorialwebsite/" class="btn" style="margin-left: 1rem;">Back to Home</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

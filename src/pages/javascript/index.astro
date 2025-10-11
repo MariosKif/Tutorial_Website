@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LearningPath from '../../components/LearningPath.astro';
+import { getCollection } from 'astro:content';
+
+// Get all JavaScript tutorials
+const javascriptTutorials = await getCollection('javascript-tutorials');
+const publishedTutorials = javascriptTutorials.filter(tutorial => tutorial.data.published);
+---
+
+<BaseLayout 
+  title="JavaScript Tutorials - Web Tutorials" 
+  description="Learn JavaScript with our comprehensive tutorials. Master the programming language that powers the modern web."
+>
+  <div class="container">
+    <!-- Category header -->
+    <div class="category-header">
+      <h1>⚡ JavaScript Tutorials</h1>
+      <p>Master the programming language that powers the modern web. Learn JavaScript from basics to advanced concepts with our comprehensive tutorials.</p>
+    </div>
+
+    <!-- Learning Path -->
+    <LearningPath 
+      courseName="JavaScript"
+      courseIcon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+      courseColor="#f7df1e"
+      collectionName="javascript-tutorials"
+    />
+
+    <!-- Search and filters -->
+    <div class="search-filters">
+      <input type="text" class="search-input" placeholder="Search JavaScript tutorials..." id="searchInput">
+      <select class="filter-select" id="difficultyFilter">
+        <option value="">All Levels</option>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+      <select class="filter-select" id="topicFilter">
+        <option value="">All Topics</option>
+        <option value="basics">Basics</option>
+        <option value="functions">Functions</option>
+        <option value="async">Async</option>
+        <option value="dom">DOM</option>
+      </select>
+    </div>
+
+    <!-- Articles grid -->
+    <div class="article-grid" id="articleGrid">
+      {publishedTutorials.map((tutorial) => (
+        <div class="article-card" data-difficulty={tutorial.data.difficulty} data-topic={tutorial.data.tags?.[0] || 'basics'}>
+          <h3><a href={tutorial.slug}>{tutorial.data.title}</a></h3>
+          <p>{tutorial.data.description}</p>
+          <div class="article-meta">
+            <span class={`article-difficulty difficulty-${tutorial.data.difficulty}`}>
+              {tutorial.data.difficulty.charAt(0).toUpperCase() + tutorial.data.difficulty.slice(1)}
+            </span>
+            <span>{tutorial.data.readTime}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <a href="#" class="disabled">&laquo; Previous</a>
+      <span class="current">1</span>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">Next &raquo;</a>
+    </div>
+  </div>
+
+  <script>
+    // Simple search and filter functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('searchInput');
+      const difficultyFilter = document.getElementById('difficultyFilter');
+      const topicFilter = document.getElementById('topicFilter');
+      const articleGrid = document.getElementById('articleGrid');
+      const articles = articleGrid.querySelectorAll('.article-card');
+
+      function filterArticles() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const difficulty = difficultyFilter.value;
+        const topic = topicFilter.value;
+
+        articles.forEach(article => {
+          const title = article.querySelector('h3 a').textContent.toLowerCase();
+          const description = article.querySelector('p').textContent.toLowerCase();
+          const articleDifficulty = article.dataset.difficulty;
+          const articleTopic = article.dataset.topic;
+
+          const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+          const matchesDifficulty = !difficulty || articleDifficulty === difficulty;
+          const matchesTopic = !topic || articleTopic === topic;
+
+          if (matchesSearch && matchesDifficulty && matchesTopic) {
+            article.style.display = 'block';
+          } else {
+            article.style.display = 'none';
+          }
+        });
+      }
+
+      searchInput.addEventListener('input', filterArticles);
+      difficultyFilter.addEventListener('change', filterArticles);
+      topicFilter.addEventListener('change', filterArticles);
+    });
+  </script>
+</BaseLayout>

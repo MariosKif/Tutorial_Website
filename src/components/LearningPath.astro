@@ -1,0 +1,201 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  courseName: string;
+  courseIcon: string;
+  courseColor: string;
+  collectionName: string;
+}
+
+const { courseName, courseIcon, courseColor, collectionName } = Astro.props;
+
+// Get all tutorials from the specified collection
+let tutorials: any[] = [];
+try {
+  const collection = await getCollection(collectionName as any);
+  tutorials = collection.filter(tutorial => tutorial.data.published !== false);
+} catch (error) {
+  console.warn(`Collection ${collectionName} not found or empty`);
+}
+
+// Count tutorials by difficulty
+const beginnerCount = tutorials.filter(t => t.data.difficulty === 'beginner').length;
+const intermediateCount = tutorials.filter(t => t.data.difficulty === 'intermediate').length;
+const advancedCount = tutorials.filter(t => t.data.difficulty === 'advanced').length;
+const totalCount = tutorials.length;
+
+// Generate description based on actual count
+const getDescription = (count: number, course: string) => {
+  if (count === 0) return `Start your ${course} journey with our comprehensive tutorials.`;
+  if (count === 1) return `Master ${course} with our comprehensive tutorial covering everything from basics to advanced concepts.`;
+  return `Master ${course} with our ${count} comprehensive tutorials covering everything from basics to advanced concepts.`;
+};
+---
+
+<div class="learning-path" style={`--course-color: ${courseColor}`}>
+  <div class="learning-path-header">
+    <img src={courseIcon} alt={`${courseName} Logo`} class="course-icon">
+    <h3>{courseName} Learning Path</h3>
+  </div>
+  
+  <p class="learning-description">
+    {getDescription(totalCount, courseName)}
+  </p>
+  
+  <div class="learning-stats">
+    <div class="stat-item">
+      <span class="stat-number">{totalCount}</span>
+      <span class="stat-label">Total Tutorials</span>
+    </div>
+    
+    {beginnerCount > 0 && (
+      <div class="stat-item">
+        <span class="stat-number">{beginnerCount}</span>
+        <span class="stat-label">Beginner</span>
+      </div>
+    )}
+    
+    {intermediateCount > 0 && (
+      <div class="stat-item">
+        <span class="stat-number">{intermediateCount}</span>
+        <span class="stat-label">Intermediate</span>
+      </div>
+    )}
+    
+    {advancedCount > 0 && (
+      <div class="stat-item">
+        <span class="stat-number">{advancedCount}</span>
+        <span class="stat-label">Advanced</span>
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .learning-path {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 12px var(--shadow);
+    border-left: 4px solid var(--course-color);
+    transition: all 0.3s ease;
+  }
+
+  .learning-path:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow);
+  }
+
+  .learning-path-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .course-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    padding: 4px;
+    background: var(--bg-primary);
+  }
+
+  .learning-path-header h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .learning-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .learning-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 0.75rem;
+    background: var(--bg-primary);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .stat-item:hover {
+    background: var(--course-color);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  .stat-item:hover .stat-number,
+  .stat-item:hover .stat-label {
+    color: white;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--course-color);
+    margin-bottom: 0.25rem;
+    transition: color 0.3s ease;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .learning-path {
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .learning-path-header h3 {
+      font-size: 1.1rem;
+    }
+
+    .learning-description {
+      font-size: 0.9rem;
+    }
+
+    .learning-stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .stat-item {
+      padding: 0.6rem;
+    }
+
+    .stat-number {
+      font-size: 1.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .learning-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

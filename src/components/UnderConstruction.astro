@@ -1,0 +1,371 @@
+---
+interface Props {
+  courseName: string;
+  courseIcon: string;
+  courseColor: string;
+  estimatedLaunch?: string;
+  description?: string;
+}
+
+const { 
+  courseName, 
+  courseIcon, 
+  courseColor, 
+  estimatedLaunch = "Coming Soon",
+  description = "We're working hard to bring you comprehensive tutorials for this course."
+} = Astro.props;
+---
+
+<div class="under-construction">
+  <div class="construction-content">
+    <div class="construction-icon" style={`--course-color: ${courseColor}`}>
+      <img src={courseIcon} alt={`${courseName} Logo`} class="course-logo">
+      <div class="construction-overlay">
+        <span class="construction-symbol">🚧</span>
+      </div>
+    </div>
+    
+    <h1 class="construction-title">{courseName} Course</h1>
+    <p class="construction-subtitle">Under Construction</p>
+    
+    <p class="construction-description">
+      {description}
+    </p>
+    
+    <div class="construction-details">
+      <div class="detail-item">
+        <span class="detail-icon">📅</span>
+        <div class="detail-content">
+          <strong>Estimated Launch</strong>
+          <span>{estimatedLaunch}</span>
+        </div>
+      </div>
+      
+      <div class="detail-item">
+        <span class="detail-icon">📚</span>
+        <div class="detail-content">
+          <strong>Content Type</strong>
+          <span>Comprehensive Tutorials</span>
+        </div>
+      </div>
+      
+      <div class="detail-item">
+        <span class="detail-icon">🎯</span>
+        <div class="detail-content">
+          <strong>Difficulty Levels</strong>
+          <span>Beginner to Advanced</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="construction-actions">
+      <a href="/tutorialwebsite/" class="btn btn-primary">
+        <span>←</span> Back to Home
+      </a>
+      <a href="/tutorialwebsite/html/" class="btn btn-secondary">
+        Try HTML Course
+      </a>
+    </div>
+    
+    <div class="construction-notify">
+      <h3>Want to be notified when this course launches?</h3>
+      <p>Join our newsletter to get updates on new courses and tutorials.</p>
+      <div class="newsletter-signup">
+        <input type="email" placeholder="Enter your email" class="newsletter-input">
+        <button class="btn btn-accent">Notify Me</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="construction-progress">
+    <h3>Course Development Progress</h3>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 25%"></div>
+    </div>
+    <p class="progress-text">Content planning and structure design in progress</p>
+  </div>
+</div>
+
+<style>
+  .under-construction {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow);
+    transition: background-color 0.3s ease;
+  }
+
+  .construction-content {
+    margin-bottom: 3rem;
+  }
+
+  .construction-icon {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+    filter: grayscale(0.3) brightness(0.8);
+    transition: all 0.3s ease;
+  }
+
+  .course-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    padding: 20px;
+    background: var(--bg-primary);
+    box-shadow: 0 5px 15px var(--shadow);
+  }
+
+  .construction-overlay {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--course-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite;
+  }
+
+  .construction-symbol {
+    font-size: 1.5rem;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .construction-title {
+    font-size: 3rem;
+    color: var(--accent-primary);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  .construction-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .construction-description {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .construction-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-primary);
+    border-radius: 15px;
+    text-align: left;
+    transition: background-color 0.3s ease;
+  }
+
+  .detail-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .detail-content strong {
+    color: var(--text-primary);
+    font-size: 1rem;
+  }
+
+  .detail-content span {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .construction-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    background: var(--accent-primary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(93, 173, 226, 0.3);
+  }
+
+  .btn-secondary {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 2px solid var(--accent-primary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--accent-primary);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .btn-accent {
+    background: var(--accent-secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .btn-accent:hover {
+    background: var(--accent-primary);
+    transform: translateY(-2px);
+  }
+
+  .construction-notify {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .construction-notify h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  .construction-notify p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .newsletter-signup {
+    display: flex;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .newsletter-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.1);
+  }
+
+  .construction-progress {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+  }
+
+  .construction-progress h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+
+  .progress-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .under-construction {
+      margin: 1rem;
+      padding: 1.5rem;
+    }
+
+    .construction-title {
+      font-size: 2.5rem;
+    }
+
+    .construction-details {
+      grid-template-columns: 1fr;
+    }
+
+    .construction-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .newsletter-signup {
+      flex-direction: column;
+    }
+
+    .newsletter-input {
+      min-width: auto;
+    }
+  }
+</style>
