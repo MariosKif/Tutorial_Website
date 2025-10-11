@@ -130,29 +130,39 @@ button {
     outline: none;
 }
 
-/* Force search button styling - highest specificity */
-.nav .nav-center .nav-search .search-btn,
-.nav-search .search-btn,
-button.search-btn {
-    all: unset !important;
-    padding: 0.75rem 1.25rem !important;
-    background: linear-gradient(135deg, #5dade2, #3498db) !important;
-    color: white !important;
-    border: 2px solid #5dade2 !important;
-    border-radius: 0 12px 12px 0 !important;
-    cursor: pointer !important;
-    font-size: 1rem !important;
-    transition: all 0.3s ease !important;
-    font-weight: 500 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    min-width: 50px !important;
-    box-shadow: none !important;
-    outline: none !important;
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    appearance: none !important;
+/* Search button styling - matches website theme */
+.search-btn {
+    padding: 0.75rem 1.25rem;
+    background-color: var(--accent-primary);
+    color: white;
+    border: 2px solid var(--accent-primary);
+    border-radius: 0 12px 12px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    box-shadow: none;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-family: inherit;
+}
+
+.search-btn:hover {
+    background-color: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(93, 173, 226, 0.3);
+}
+
+.search-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(93, 173, 226, 0.2);
 }
 
 body {
@@ -578,16 +588,6 @@ blockquote {
 }
 
 
-.search-btn:hover {
-    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(93, 173, 226, 0.3);
-}
-
-.search-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(93, 173, 226, 0.2);
-}
 
 .nav-link.active {
     background-color: var(--accent-primary);
