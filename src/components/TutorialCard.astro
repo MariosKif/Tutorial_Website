@@ -71,6 +71,11 @@ const difficultyStyle = difficultyColors[difficulty];
     border-color: var(--accent-primary);
   }
 
+  .tutorial-card:hover .tutorial-difficulty {
+    transform: scale(1.05);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  }
+
   .tutorial-card h3 {
     padding: 1rem 1rem 0.75rem;
     color: var(--accent-primary);
@@ -101,8 +106,8 @@ const difficultyStyle = difficultyColors[difficulty];
   }
 
   .tutorial-meta {
-    padding: 1rem 1rem;
-    background-color: var(--bg-primary);
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     border-top: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
@@ -120,6 +125,8 @@ const difficultyStyle = difficultyColors[difficulty];
     right: 0;
     z-index: 2;
     margin: 0;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
   }
 
   .tutorial-meta span {
@@ -141,28 +148,42 @@ const difficultyStyle = difficultyColors[difficulty];
   }
 
   .tutorial-difficulty {
-    padding: 0.3rem 0.6rem;
-    border-radius: 12px;
-    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     white-space: nowrap;
-    min-width: 70px;
-    max-width: 70px;
+    min-width: 75px;
+    max-width: 75px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     position: relative;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
   }
 
   .tutorial-read-time {
     color: var(--text-secondary);
     font-size: 0.8rem;
+    font-weight: 500;
     flex-shrink: 0;
     white-space: nowrap;
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    opacity: 0.9;
+  }
+
+  .tutorial-read-time::before {
+    content: "⏱️";
+    font-size: 0.7rem;
+    opacity: 0.7;
   }
 
 
@@ -197,6 +218,17 @@ const difficultyStyle = difficultyColors[difficulty];
       min-height: 2.25rem;
       max-height: 2.25rem;
       margin: 0;
+    }
+    
+    .tutorial-difficulty {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.65rem;
+      min-width: 65px;
+      max-width: 65px;
+    }
+    
+    .tutorial-read-time {
+      font-size: 0.75rem;
     }
     
   }
