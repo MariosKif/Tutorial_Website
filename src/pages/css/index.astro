@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import LearningPath from '../../components/LearningPath.astro';
+import TutorialCard from '../../components/TutorialCard.astro';
 import { getCollection } from 'astro:content';
 
 // Get all CSS tutorials
@@ -48,16 +49,15 @@ const publishedTutorials = cssTutorials.filter(tutorial => tutorial.data.publish
     <!-- Articles grid -->
     <div class="article-grid" id="articleGrid">
       {publishedTutorials.map((tutorial) => (
-        <div class="article-card" data-difficulty={tutorial.data.difficulty} data-topic={tutorial.data.tags?.[0] || 'basics'}>
-          <h3><a href={tutorial.slug}>{tutorial.data.title}</a></h3>
-          <p>{tutorial.data.description}</p>
-          <div class="article-meta">
-            <span class={`article-difficulty difficulty-${tutorial.data.difficulty}`}>
-              {tutorial.data.difficulty.charAt(0).toUpperCase() + tutorial.data.difficulty.slice(1)}
-            </span>
-            <span>{tutorial.data.readTime}</span>
-          </div>
-        </div>
+        <TutorialCard
+          title={tutorial.data.title}
+          description={tutorial.data.description}
+          difficulty={tutorial.data.difficulty}
+          readTime={tutorial.data.readTime}
+          slug={tutorial.slug}
+          tags={tutorial.data.tags}
+          category="CSS"
+        />
       ))}
     </div>
 
