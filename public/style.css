@@ -756,9 +756,10 @@ code:not(.code-block code) {
 /* Article listing styles */
 .article-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    align-items: stretch;
 }
 
 .article-card {
@@ -771,6 +772,7 @@ code:not(.code-block code) {
     display: flex;
     flex-direction: column;
     height: 100%;
+    min-height: 280px;
 }
 
 .article-card:hover {
@@ -783,6 +785,7 @@ code:not(.code-block code) {
     color: var(--accent-primary);
     font-size: 1.2rem;
     margin: 0;
+    flex-shrink: 0;
 }
 
 .article-card p {
@@ -790,6 +793,7 @@ code:not(.code-block code) {
     color: var(--text-secondary);
     font-size: 0.9rem;
     margin: 0;
+    flex-grow: 1;
 }
 
 .article-meta {
