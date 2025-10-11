@@ -795,29 +795,24 @@ code:not(.code-block code) {
     border-top: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     font-size: 0.8rem;
     color: var(--text-secondary);
     min-height: 2rem;
 }
 
 .article-meta span:not(.article-difficulty) {
-    display: inline-flex;
-    align-items: center;
-    height: 1.5rem;
-    line-height: 1;
+    font-size: 0.8rem;
+    line-height: 1.2;
 }
 
 .article-difficulty {
     padding: 0.25rem 0.5rem;
     border-radius: 12px;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-    height: 1.5rem;
-    line-height: 1;
+    line-height: 1.2;
 }
 
 .difficulty-beginner {
