@@ -1,0 +1,3 @@
+[submodule "external-content"]
+	path = external-content
+	url = https://github.com/MariosKif/html_courses.git
