@@ -824,12 +824,27 @@ blockquote {
     margin: 0 auto 3rem;
 }
 
+/* Category sections */
+.category-section {
+    margin-bottom: 4rem;
+}
+
+.category-section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-primary);
+    display: inline-block;
+}
+
 /* Category grid */
 .category-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    margin-top: 2rem;
+    margin-top: 0;
 }
 
 .category-card {
