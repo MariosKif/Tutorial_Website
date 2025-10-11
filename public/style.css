@@ -1033,6 +1033,8 @@ code:not(.code-block code) {
     position: relative;
     z-index: 1;
     justify-content: start;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* Tutorial card styles - now handled by component */
@@ -1126,6 +1128,9 @@ code:not(.code-block code) {
     align-items: center;
     flex-wrap: wrap;
     transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* Search input removed */
