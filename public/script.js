@@ -4,7 +4,27 @@
 // Log when the page loads
 console.log("Web Tutorials loaded");
 
-// Theme initialization is now handled in the HTML head to prevent flash
+// Additional theme handling for navigation
+(function() {
+    // Handle theme changes during navigation
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply theme immediately when script loads
+    if (document.documentElement.getAttribute('data-theme') !== savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        
+        // Force colors if dark theme
+        if (savedTheme === 'dark') {
+            document.documentElement.style.backgroundColor = '#1a1a1a';
+            document.documentElement.style.color = '#e0e0e0';
+        }
+    }
+    
+    // Ensure content is visible
+    if (document.body && !document.body.classList.contains('theme-loaded')) {
+        document.body.classList.add('theme-loaded');
+    }
+})();
 
 // Dark mode toggle functionality
 function toggleDarkMode() {

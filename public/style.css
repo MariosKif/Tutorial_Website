@@ -30,6 +30,33 @@ body.theme-loaded {
     opacity: 1;
 }
 
+/* Fallback for users who prefer dark mode */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2d2d2d;
+        --bg-sidebar: #1e1e1e;
+        --bg-sidebar-header: #0f0f0f;
+        --text-primary: #e0e0e0;
+        --text-secondary: #b0b0b0;
+        --text-sidebar: #e0e0e0;
+        --accent-primary: #64b5f6;
+        --accent-secondary: #42a5f5;
+        --border-color: #404040;
+        --shadow: rgba(0, 0, 0, 0.3);
+    }
+    
+    :root:not([data-theme="light"]) html {
+        background-color: #1a1a1a !important;
+        color: #e0e0e0 !important;
+    }
+    
+    :root:not([data-theme="light"]) body {
+        background-color: #1a1a1a !important;
+        color: #e0e0e0 !important;
+    }
+}
+
 [data-theme="dark"] {
     --bg-primary: #1a1a1a;
     --bg-secondary: #2d2d2d;
