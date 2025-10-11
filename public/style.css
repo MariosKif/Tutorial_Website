@@ -756,7 +756,7 @@ code:not(.code-block code) {
 /* Article listing styles */
 .article-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin: 2rem 0;
     align-items: stretch;
@@ -1203,7 +1203,16 @@ code:not(.code-block code) {
 }
 
 /* Responsive design */
+@media (max-width: 1200px) {
+    .article-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
+    .article-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
     .sidebar {
         transform: translateX(-100%);
     }
@@ -1321,6 +1330,10 @@ code:not(.code-block code) {
     
     .tutorial-card {
         padding: 1.5rem;
+    }
+    
+    .article-grid {
+        grid-template-columns: 1fr;
     }
     
     .tutorial-content {
