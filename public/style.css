@@ -130,7 +130,70 @@ button {
     outline: none;
 }
 
-/* Search functionality removed */
+/* Navigation search bar */
+.nav-search {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.nav-search:focus-within {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.15), 0 2px 8px var(--shadow);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    padding: 0.5rem 0.75rem;
+    font-family: inherit;
+    min-width: 250px;
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.search-btn {
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    min-width: 40px;
+    height: 40px;
+}
+
+.search-btn:hover {
+    background-color: var(--accent-secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(93, 173, 226, 0.3);
+}
+
+.search-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(93, 173, 226, 0.2);
+}
+
+.search-btn svg {
+    width: 16px;
+    height: 16px;
+}
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -1268,7 +1331,14 @@ code:not(.code-block code) {
         width: 100%;
     }
     
-    /* Search removed */
+    .nav-search {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .search-input {
+        min-width: 200px;
+    }
     
     .nav-auth {
         justify-content: center;
@@ -1276,7 +1346,14 @@ code:not(.code-block code) {
 }
 
 @media (max-width: 480px) {
-    /* Search removed */
+    .nav-search {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .search-input {
+        min-width: 150px;
+    }
     
     .nav-center {
         flex-direction: column;

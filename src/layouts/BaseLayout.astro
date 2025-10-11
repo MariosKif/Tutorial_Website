@@ -194,7 +194,15 @@ const { title, description = "Learn web development from the ground up! Comprehe
       </h1>
       <nav class="nav">
         <div class="nav-center">
-          <!-- Search functionality removed -->
+          <div class="nav-search">
+            <input type="text" placeholder="Search tutorials..." class="search-input" id="globalSearch">
+            <button class="search-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </button>
+          </div>
         </div>
         <div class="nav-auth">
           <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
