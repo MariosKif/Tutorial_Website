@@ -101,10 +101,22 @@ function initializeSearch() {
             existingResults.remove();
         }
         
+        // Remove existing backdrop
+        const existingBackdrop = document.getElementById('searchBackdrop');
+        if (existingBackdrop) {
+            existingBackdrop.remove();
+        }
+        
         if (results.length === 0) {
             showNoResults(searchTerm);
             return;
         }
+        
+        // Create backdrop to prevent interaction with content below
+        const backdrop = document.createElement('div');
+        backdrop.id = 'searchBackdrop';
+        backdrop.className = 'search-backdrop';
+        backdrop.onclick = closeSearchResults;
         
         // Create results container
         const resultsContainer = document.createElement('div');
@@ -135,7 +147,8 @@ function initializeSearch() {
         resultsHTML += '</div>';
         resultsContainer.innerHTML = resultsHTML;
         
-        // Insert results after the search bar
+        // Insert backdrop and results
+        document.body.appendChild(backdrop);
         const navCenter = document.querySelector('.nav-center');
         navCenter.appendChild(resultsContainer);
         
@@ -153,6 +166,12 @@ function initializeSearch() {
     
     // Show no results message
     function showNoResults(searchTerm) {
+        // Create backdrop
+        const backdrop = document.createElement('div');
+        backdrop.id = 'searchBackdrop';
+        backdrop.className = 'search-backdrop';
+        backdrop.onclick = closeSearchResults;
+        
         const resultsContainer = document.createElement('div');
         resultsContainer.id = 'searchResults';
         resultsContainer.className = 'search-results no-results';
@@ -172,6 +191,7 @@ function initializeSearch() {
             </div>
         `;
         
+        document.body.appendChild(backdrop);
         const navCenter = document.querySelector('.nav-center');
         navCenter.appendChild(resultsContainer);
         
@@ -183,8 +203,13 @@ function initializeSearch() {
     // Close search results
     function closeSearchResults() {
         const results = document.getElementById('searchResults');
+        const backdrop = document.getElementById('searchBackdrop');
+        
         if (results) {
             results.remove();
+        }
+        if (backdrop) {
+            backdrop.remove();
         }
         document.removeEventListener('click', handleClickOutside);
     }

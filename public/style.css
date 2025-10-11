@@ -195,6 +195,18 @@ button {
     height: 16px;
 }
 
+/* Search backdrop */
+.search-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    pointer-events: auto;
+}
+
 /* Search results styling */
 .search-results {
     position: absolute;
@@ -205,11 +217,12 @@ button {
     border: 2px solid var(--border-color);
     border-radius: 12px;
     box-shadow: 0 8px 32px var(--shadow);
-    z-index: 1000;
+    z-index: 1001;
     margin-top: 0.5rem;
     max-height: 400px;
     overflow-y: auto;
     animation: slideDown 0.3s ease-out;
+    pointer-events: auto;
 }
 
 @keyframes slideDown {
@@ -610,6 +623,8 @@ blockquote {
     width: calc(100% - 280px);
     box-sizing: border-box;
     overflow-x: hidden;
+    position: relative;
+    z-index: 1;
 }
 
 /* Mobile sidebar toggle */
@@ -997,6 +1012,8 @@ code:not(.code-block code) {
     margin: 2rem 0;
     align-items: stretch;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .article-card {
