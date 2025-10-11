@@ -552,10 +552,13 @@ blockquote {
     background-color: var(--bg-secondary);
 }
 
+.nav-search .search-btn,
 .search-btn {
     padding: 0.75rem 1.25rem !important;
+    background: linear-gradient(135deg, #5dade2, #3498db) !important;
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
     color: white !important;
+    border: 2px solid #5dade2 !important;
     border: 2px solid var(--accent-primary) !important;
     border-radius: 0 12px 12px 0 !important;
     cursor: pointer;
@@ -568,6 +571,9 @@ blockquote {
     min-width: 50px;
     box-shadow: none !important;
     outline: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
 }
 
 .search-btn:hover {
