@@ -28,6 +28,23 @@ const publishedTutorials = cssTutorials.filter(tutorial => tutorial.data.publish
       collectionName="css-tutorials"
     />
 
+    <!-- Search and filters -->
+    <div class="search-filters">
+      <input type="text" class="search-input" placeholder="Search CSS tutorials..." id="searchInput">
+      <select class="filter-select" id="difficultyFilter">
+        <option value="">All Levels</option>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+      <select class="filter-select" id="topicFilter">
+        <option value="">All Topics</option>
+        <option value="basics">Basics</option>
+        <option value="layout">Layout</option>
+        <option value="animations">Animations</option>
+        <option value="responsive">Responsive</option>
+      </select>
+    </div>
 
     <!-- Articles grid -->
     <div class="article-grid" id="articleGrid">
