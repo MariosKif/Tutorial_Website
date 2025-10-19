@@ -1,15 +1,15 @@
 /* CSS Variables for theming */
 :root {
-    --bg-primary: #f7f9fc;
-    --bg-secondary: #ffffff;
-    --bg-sidebar: #ffffff;
-    --bg-sidebar-header: #f8f9fa;
+    --bg-primary: #f5f3f0;
+    --bg-secondary: #f8f6f3;
+    --bg-sidebar: #f8f6f3;
+    --bg-sidebar-header: #f0ede8;
     --text-primary: #2c3e50;
     --text-secondary: #5d6d7e;
     --text-sidebar: #2c3e50;
     --accent-primary: #5dade2;
     --accent-secondary: #3498db;
-    --border-color: #e0e6ed;
+    --border-color: #d9d2c8;
     --shadow: rgba(44, 62, 80, 0.1);
 }
 
