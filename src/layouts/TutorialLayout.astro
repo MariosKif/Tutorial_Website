@@ -30,14 +30,14 @@ const structuredData = {
     "name": "Web Tutorials",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://yourdomain.com/tutorialwebsite/logo.png"
+      "url": "https://yourdomain.com/logo.png"
     }
   },
   "datePublished": publishDate || new Date().toISOString(),
   "dateModified": new Date().toISOString(),
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": `https://yourdomain.com/tutorialwebsite/${category.toLowerCase()}/${title.toLowerCase().replace(/\s+/g, '-')}/`
+    "@id": `https://yourdomain.com/${category.toLowerCase()}/${title.toLowerCase().replace(/\s+/g, '-')}/`
   },
   "articleSection": category,
   "keywords": [category, difficulty, ...tags].join(", "),
@@ -56,19 +56,19 @@ const breadcrumbData = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://yourdomain.com/tutorialwebsite/"
+      "item": "https://yourdomain.com/"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": category,
-      "item": `https://yourdomain.com/tutorialwebsite/${category.toLowerCase()}/`
+      "item": `https://yourdomain.com/${category.toLowerCase()}/`
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": title,
-      "item": `https://yourdomain.com/tutorialwebsite/${category.toLowerCase()}/${title.toLowerCase().replace(/\s+/g, '-')}/`
+      "item": `https://yourdomain.com/${category.toLowerCase()}/${title.toLowerCase().replace(/\s+/g, '-')}/`
     }
   ]
 };
@@ -83,7 +83,7 @@ const breadcrumbData = {
   <meta property="og:title" content={`${title} | ${category} Tutorial`} />
   <meta property="og:description" content={description || `Learn ${title} with our comprehensive ${category} tutorial`} />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content={`https://yourdomain.com/tutorialwebsite/${category.toLowerCase()}/${title.toLowerCase().replace(/\s+/g, '-')}/`} />
+  <meta property="og:url" content={`https://yourdomain.com/${category.toLowerCase()}/${title.toLowerCase().replace(/\s+/g, '-')}/`} />
   <meta property="og:site_name" content="Web Tutorials" />
   <meta property="article:section" content={category} />
   <meta property="article:tag" content={category} />
@@ -95,16 +95,16 @@ const breadcrumbData = {
   <meta name="twitter:description" content={description || `Learn ${title} with our comprehensive ${category} tutorial`} />
   
   <!-- Canonical URL -->
-  <link rel="canonical" href={`https://yourdomain.com/tutorialwebsite/${category.toLowerCase()}/${title.toLowerCase().replace(/\s+/g, '-')}/`} />
+  <link rel="canonical" href={`https://yourdomain.com/${category.toLowerCase()}/${title.toLowerCase().replace(/\s+/g, '-')}/`} />
   
   <!-- Breadcrumb Navigation -->
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <ol class="breadcrumb-list">
       <li class="breadcrumb-item">
-        <a href="/tutorialwebsite/" class="breadcrumb-link">Home</a>
+        <a href="/" class="breadcrumb-link">Home</a>
       </li>
       <li class="breadcrumb-item">
-        <a href={`/tutorialwebsite/${category.toLowerCase()}/`} class="breadcrumb-link">{category}</a>
+        <a href={`/${category.toLowerCase()}/`} class="breadcrumb-link">{category}</a>
       </li>
       <li class="breadcrumb-item breadcrumb-current" aria-current="page">
         {title}
@@ -130,8 +130,8 @@ const breadcrumbData = {
     
     <!-- Navigation buttons -->
     <div class="tutorial-navigation">
-      <a href={`/tutorialwebsite/${category.toLowerCase()}/`} class="btn">Browse More {category} Tutorials</a>
-      <a href="/tutorialwebsite/" class="btn" style="margin-left: 1rem;">Back to Home</a>
+      <a href={`/${category.toLowerCase()}/`} class="btn">Browse More {category} Tutorials</a>
+      <a href="/" class="btn" style="margin-left: 1rem;">Back to Home</a>
     </div>
   </div>
 </BaseLayout>

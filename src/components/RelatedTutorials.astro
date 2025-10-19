@@ -37,12 +37,12 @@ const filteredTutorials = tutorials.filter(tutorial => tutorial.title !== curren
       {filteredTutorials.map(tutorial => (
         <article class="related-tutorial-card">
           <h4 class="related-tutorial-card-title">
-            <a href={`/tutorialwebsite/${category.toLowerCase()}/${tutorial.slug}/`} class="related-tutorial-link">
+            <a href={`/${category.toLowerCase()}/${tutorial.slug}/`} class="related-tutorial-link">
               {tutorial.title}
             </a>
           </h4>
           <p class="related-tutorial-card-description">{tutorial.description}</p>
-          <a href={`/tutorialwebsite/${category.toLowerCase()}/${tutorial.slug}/`} class="related-tutorial-read-more">
+          <a href={`/${category.toLowerCase()}/${tutorial.slug}/`} class="related-tutorial-read-more">
             Read Tutorial →
           </a>
         </article>
