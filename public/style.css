@@ -85,6 +85,19 @@ body.theme-loaded {
 /* Import modern fonts similar to javascript.info */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Remove all list bullets/dots globally */
+ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Restore numbering for breadcrumb lists */
+.breadcrumb-list {
+    list-style: decimal;
+    padding-left: 1rem;
+}
+
 /* Custom scrollbar styling */
 ::-webkit-scrollbar {
     width: 8px;
