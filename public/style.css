@@ -596,6 +596,9 @@ blockquote {
 }
 
 .sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     transition: all 0.3s ease;
     overflow: hidden;
 }
