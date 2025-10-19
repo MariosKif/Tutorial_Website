@@ -29,8 +29,8 @@ A modern, scalable tutorial website built with Astro and hosted on GitHub Pages.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/tutorialwebsite.git
-cd tutorialwebsite
+git clone https://github.com/MariosKif/html_courses.git
+cd html_courses
 ```
 
 2. Install dependencies:
@@ -96,6 +96,8 @@ Push your changes to GitHub, and the site will automatically rebuild and deploy!
 Tutorials are organized into categories. Currently available:
 
 - **HTML** - `src/content/html-tutorials/`
+- **CSS** - `src/content/css-tutorials/`
+- **JavaScript** - `src/content/javascript-tutorials/`
 
 To add more categories, create the directory and add the collection definition to `src/content/config.ts`.
 
