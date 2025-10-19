@@ -1,8 +1,58 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Course structured data for the main page
+const courseData = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Web Development Tutorials",
+  "description": "Comprehensive web development tutorials covering HTML, CSS, JavaScript, and modern frameworks",
+  "provider": {
+    "@type": "Organization",
+    "name": "Web Tutorials",
+    "url": "https://yourdomain.com/tutorialwebsite/"
+  },
+  "courseMode": "online",
+  "educationalLevel": "beginner",
+  "inLanguage": "en-US",
+  "isAccessibleForFree": true,
+  "hasCourseInstance": [
+    {
+      "@type": "CourseInstance",
+      "courseMode": "online",
+      "instructor": {
+        "@type": "Organization",
+        "name": "Web Tutorials Team"
+      }
+    }
+  ]
+};
 ---
 
-<BaseLayout title="Web Tutorials - Learn HTML, CSS & JavaScript" description="Learn web development from the ground up! Our comprehensive tutorials will guide you through HTML, CSS, and JavaScript with clear explanations and practical examples.">
+<BaseLayout title="Web Tutorials - Learn Web Development from Scratch" description="Master web development with our comprehensive tutorials. Learn HTML, CSS, JavaScript, React, Vue.js, and more with step-by-step guides and practical examples.">
+  <!-- Course Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(courseData)}></script>
+  
+  <!-- Enhanced Meta Tags -->
+  <meta name="keywords" content="web development, HTML tutorial, CSS tutorial, JavaScript tutorial, React tutorial, Vue.js tutorial, web programming, learn to code, programming tutorials, frontend development, backend development" />
+  <meta name="author" content="Web Tutorials Team" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="en-US" />
+  
+  <!-- Open Graph for Home Page -->
+  <meta property="og:title" content="Web Tutorials - Learn Web Development from Scratch" />
+  <meta property="og:description" content="Master web development with our comprehensive tutorials. Learn HTML, CSS, JavaScript, React, Vue.js, and more with step-by-step guides and practical examples." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourdomain.com/tutorialwebsite/" />
+  <meta property="og:site_name" content="Web Tutorials" />
+  
+  <!-- Twitter Card for Home Page -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Web Tutorials - Learn Web Development from Scratch" />
+  <meta name="twitter:description" content="Master web development with our comprehensive tutorials. Learn HTML, CSS, JavaScript, React, Vue.js, and more with step-by-step guides and practical examples." />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://yourdomain.com/tutorialwebsite/" />
   <div class="container">
     <!-- Welcome section -->
     <section class="welcome">

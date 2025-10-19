@@ -1,0 +1,143 @@
+---
+export interface Props {
+  category: string;
+  currentTitle: string;
+}
+
+const { category, currentTitle } = Astro.props;
+
+// Related tutorials data - you can expand this with actual content
+const relatedTutorials = {
+  html: [
+    { title: "HTML Introduction", slug: "01-introduction", description: "Learn the basics of HTML and how to structure web pages" },
+    { title: "HTML Elements and Tags", slug: "02-elements-and-tags", description: "Master HTML elements, tags, and their proper usage" },
+    { title: "HTML Forms", slug: "03-forms", description: "Create interactive forms with HTML input elements" },
+    { title: "HTML Tables", slug: "04-tables", description: "Structure data with HTML tables and accessibility" }
+  ],
+  css: [
+    { title: "CSS Basics", slug: "01-basics", description: "Learn CSS fundamentals and styling techniques" },
+    { title: "CSS Layout", slug: "02-layout", description: "Master CSS layout with Flexbox and Grid" },
+    { title: "CSS Responsive Design", slug: "03-responsive", description: "Create responsive designs for all devices" }
+  ],
+  javascript: [
+    { title: "JavaScript Introduction", slug: "01-introduction", description: "Get started with JavaScript programming" },
+    { title: "JavaScript Variables", slug: "02-variables", description: "Learn about variables, data types, and scope" },
+    { title: "JavaScript Functions", slug: "03-functions", description: "Master JavaScript functions and closures" }
+  ]
+};
+
+const tutorials = relatedTutorials[category.toLowerCase() as keyof typeof relatedTutorials] || [];
+const filteredTutorials = tutorials.filter(tutorial => tutorial.title !== currentTitle).slice(0, 3);
+---
+
+{filteredTutorials.length > 0 && (
+  <section class="related-tutorials">
+    <h3 class="related-tutorials-title">Related {category} Tutorials</h3>
+    <div class="related-tutorials-grid">
+      {filteredTutorials.map(tutorial => (
+        <article class="related-tutorial-card">
+          <h4 class="related-tutorial-card-title">
+            <a href={`/tutorialwebsite/${category.toLowerCase()}/${tutorial.slug}/`} class="related-tutorial-link">
+              {tutorial.title}
+            </a>
+          </h4>
+          <p class="related-tutorial-card-description">{tutorial.description}</p>
+          <a href={`/tutorialwebsite/${category.toLowerCase()}/${tutorial.slug}/`} class="related-tutorial-read-more">
+            Read Tutorial →
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .related-tutorials {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .related-tutorials-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .related-tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .related-tutorial-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .related-tutorial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-color: rgba(93, 173, 226, 0.3);
+  }
+
+  .related-tutorial-card-title {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .related-tutorial-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .related-tutorial-link:hover {
+    color: var(--accent-primary);
+  }
+
+  .related-tutorial-card-description {
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .related-tutorial-read-more {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .related-tutorial-read-more:hover {
+    color: var(--accent-secondary);
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 768px) {
+    .related-tutorials-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .related-tutorial-card {
+      padding: 1.25rem;
+    }
+  }
+</style>
+

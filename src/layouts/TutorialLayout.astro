@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import RelatedTutorials from '../components/RelatedTutorials.astro';
 
 export interface Props {
   title: string;
@@ -7,12 +8,110 @@ export interface Props {
   category: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   readTime: string;
+  publishDate?: string;
+  author?: string;
+  tags?: string[];
 }
 
-const { title, description, category, difficulty, readTime } = Astro.props;
+const { title, description, category, difficulty, readTime, publishDate, author = "Web Tutorials Team", tags = [] } = Astro.props;
+
+// Generate structured data for the tutorial
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description || `Learn ${title} with our comprehensive ${category} tutorial`,
+  "author": {
+    "@type": "Organization",
+    "name": author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Web Tutorials",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://yourdomain.com/tutorialwebsite/logo.png"
+    }
+  },
+  "datePublished": publishDate || new Date().toISOString(),
+  "dateModified": new Date().toISOString(),
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://yourdomain.com/tutorialwebsite/${category.toLowerCase()}/${title.toLowerCase().replace(/\s+/g, '-')}/`
+  },
+  "articleSection": category,
+  "keywords": [category, difficulty, ...tags].join(", "),
+  "educationalLevel": difficulty,
+  "learningResourceType": "Tutorial",
+  "timeRequired": readTime,
+  "inLanguage": "en-US"
+};
+
+// Generate breadcrumb structured data
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://yourdomain.com/tutorialwebsite/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": category,
+      "item": `https://yourdomain.com/tutorialwebsite/${category.toLowerCase()}/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": title,
+      "item": `https://yourdomain.com/tutorialwebsite/${category.toLowerCase()}/${title.toLowerCase().replace(/\s+/g, '-')}/`
+    }
+  ]
+};
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={`${title} | ${category} Tutorial`} description={description}>
+  <!-- Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbData)}></script>
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content={`${title} | ${category} Tutorial`} />
+  <meta property="og:description" content={description || `Learn ${title} with our comprehensive ${category} tutorial`} />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content={`https://yourdomain.com/tutorialwebsite/${category.toLowerCase()}/${title.toLowerCase().replace(/\s+/g, '-')}/`} />
+  <meta property="og:site_name" content="Web Tutorials" />
+  <meta property="article:section" content={category} />
+  <meta property="article:tag" content={category} />
+  <meta property="article:tag" content={difficulty} />
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={`${title} | ${category} Tutorial`} />
+  <meta name="twitter:description" content={description || `Learn ${title} with our comprehensive ${category} tutorial`} />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href={`https://yourdomain.com/tutorialwebsite/${category.toLowerCase()}/${title.toLowerCase().replace(/\s+/g, '-')}/`} />
+  
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol class="breadcrumb-list">
+      <li class="breadcrumb-item">
+        <a href="/tutorialwebsite/" class="breadcrumb-link">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href={`/tutorialwebsite/${category.toLowerCase()}/`} class="breadcrumb-link">{category}</a>
+      </li>
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">
+        {title}
+      </li>
+    </ol>
+  </nav>
+  
   <div class="tutorial-content">
     <!-- Tutorial metadata -->
     <div class="tutorial-meta">
@@ -25,6 +124,9 @@ const { title, description, category, difficulty, readTime } = Astro.props;
     
     <!-- Tutorial content -->
     <slot />
+    
+    <!-- Related Tutorials -->
+    <RelatedTutorials category={category} currentTitle={title} />
     
     <!-- Navigation buttons -->
     <div class="tutorial-navigation">

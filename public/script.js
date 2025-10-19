@@ -456,15 +456,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Utility function for future features
-function showNotification(message, type = 'info') {
-    // Notification system placeholder
-}
-
 // Export functions for potential module use
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
-        toggleDarkMode,
-        showNotification
+        toggleDarkMode
     };
 }

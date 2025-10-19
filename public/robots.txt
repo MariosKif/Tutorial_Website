@@ -1,0 +1,32 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://yourdomain.com/tutorialwebsite/sitemap.xml
+
+# Disallow admin or private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /_astro/
+Disallow: /node_modules/
+
+# Allow all tutorial content
+Allow: /html/
+Allow: /css/
+Allow: /javascript/
+Allow: /react/
+Allow: /vue/
+Allow: /angular/
+Allow: /nodejs/
+Allow: /python/
+Allow: /php/
+Allow: /mysql/
+Allow: /mongodb/
+Allow: /postgresql/
+Allow: /git/
+Allow: /docker/
+Allow: /aws/
+
+# Crawl delay (optional)
+Crawl-delay: 1
+
