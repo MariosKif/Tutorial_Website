@@ -58,10 +58,6 @@ if (isHtmlCourse) {
             <li>
               <a href={`/${currentCourseName.toLowerCase()}/${tutorial.slug}/`} class="sidebar-link tutorial-link">
                 <span class="tutorial-title">{tutorial.data.title}</span>
-                <span class="tutorial-meta">
-                  <span class="difficulty-badge difficulty-{tutorial.data.difficulty}">{tutorial.data.difficulty}</span>
-                  <span class="read-time">{tutorial.data.readTime}</span>
-                </span>
               </a>
             </li>
           ))}
