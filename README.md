@@ -29,8 +29,8 @@ A modern, scalable tutorial website built with Astro and hosted on GitHub Pages.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/MariosKif/html_courses.git
-cd html_courses
+git clone https://github.com/MariosKif/Tutorial_Website.git
+cd Tutorial_Website
 ```
 
 2. Install dependencies:
