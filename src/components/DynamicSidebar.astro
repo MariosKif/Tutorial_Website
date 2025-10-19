@@ -1,0 +1,199 @@
+---
+import { getCollection } from 'astro:content';
+
+// Get all collections
+const htmlTutorials = await getCollection('external-html-tutorials');
+const cssTutorials = await getCollection('css-tutorials');
+const jsTutorials = await getCollection('javascript-tutorials');
+
+// Get current URL path to determine which course we're in
+const currentPath = Astro.url.pathname;
+const isHtmlCourse = currentPath.startsWith('/html');
+const isCssCourse = currentPath.startsWith('/css');
+const isJsCourse = currentPath.startsWith('/javascript');
+
+// Get the appropriate tutorials based on current course
+let currentTutorials = [];
+let currentCourseName = '';
+let currentCourseIcon = '';
+let currentCourseColor = '';
+
+if (isHtmlCourse) {
+  currentTutorials = htmlTutorials.filter(tutorial => tutorial.data.published);
+  currentCourseName = 'HTML';
+  currentCourseIcon = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg';
+  currentCourseColor = '#e34c26';
+} else if (isCssCourse) {
+  currentTutorials = cssTutorials.filter(tutorial => tutorial.data.published);
+  currentCourseName = 'CSS';
+  currentCourseIcon = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg';
+  currentCourseColor = '#1572b6';
+} else if (isJsCourse) {
+  currentTutorials = jsTutorials.filter(tutorial => tutorial.data.published);
+  currentCourseName = 'JavaScript';
+  currentCourseIcon = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg';
+  currentCourseColor = '#f7df1e';
+}
+---
+
+<!-- Dynamic Sidebar -->
+<aside class="sidebar" id="sidebar">
+  {isHtmlCourse || isCssCourse || isJsCourse ? (
+    <!-- Course-specific sidebar -->
+    <div class="sidebar-header">
+      <div class="course-header">
+        <img src={currentCourseIcon} alt={`${currentCourseName} Logo`} class="course-logo" style={`background-color: ${currentCourseColor}`}>
+        <h2>{currentCourseName} Tutorials</h2>
+      </div>
+      <p class="course-count">{currentTutorials.length} tutorials available</p>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">
+          <span class="section-title-text">📚 Tutorial List</span>
+        </div>
+        <ul class="sidebar-menu course-tutorials">
+          {currentTutorials.map((tutorial) => (
+            <li>
+              <a href={`/${currentCourseName.toLowerCase()}/${tutorial.slug}/`} class="sidebar-link tutorial-link">
+                <span class="tutorial-title">{tutorial.data.title}</span>
+                <span class="tutorial-meta">
+                  <span class="difficulty-badge difficulty-{tutorial.data.difficulty}">{tutorial.data.difficulty}</span>
+                  <span class="read-time">{tutorial.data.readTime}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">
+          <span class="section-title-text">🔗 Quick Links</span>
+        </div>
+>
+          <a href="/" class="sidebar-link back-link">
+            <span class="back-icon">←</span>
+            Back to All Courses
+          </a>
+        </ul>
+      </div>
+    </nav>
+  ) : (
+    <!-- Default sidebar for homepage -->
+    <div class="sidebar-header">
+      <h2>📚 Course Categories</h2>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">
+        <div class="sidebar-section-title expandable" data-section="web-dev">
+          <span class="section-title-text">Web Development</span>
+          <span class="expand-icon">▶</span>
+        </div>
+        <ul class="sidebar-menu" id="web-dev-menu">
+          <li><a href="/html/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="language-logo">
+            HTML
+          </a></li>
+          <li><a href="/css/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="language-logo">
+            CSS
+          </a></li>
+          <li><a href="/javascript/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="language-logo">
+            JavaScript
+          </a></li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-section-title expandable" data-section="frontend">
+          <span class="section-title-text">Frontend Frameworks</span>
+          <span class="expand-icon">▶</span>
+        </div>
+        <ul class="sidebar-menu" id="frontend-menu">
+          <li><a href="/react/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="language-logo">
+            React
+          </a></li>
+          <li><a href="/vue/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js" class="language-logo">
+            Vue.js
+          </a></li>
+          <li><a href="/angular/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" alt="Angular" class="language-logo">
+            Angular
+          </a></li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-section-title expandable" data-section="backend">
+          <span class="section-title-text">Backend Development</span>
+          <span class="expand-icon">▶</span>
+        </div>
+        <ul class="sidebar-menu" id="backend-menu">
+          <li><a href="/nodejs/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="language-logo">
+            Node.js
+          </a></li>
+          <li><a href="/python/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="language-logo">
+            Python
+          </a></li>
+          <li><a href="/php/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="language-logo">
+            PHP
+          </a></li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-section-title expandable" data-section="database">
+          <span class="section-title-text">Database</span>
+          <span class="expand-icon">▶</span>
+        </div>
+        <ul class="sidebar-menu" id="database-menu">
+          <li><a href="/mysql/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="language-logo">
+            MySQL
+          </a></li>
+          <li><a href="/mongodb/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="language-logo">
+            MongoDB
+          </a></li>
+          <li><a href="/postgresql/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="language-logo">
+            PostgreSQL
+          </a></li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-section-title expandable" data-section="tools">
+          <span class="section-title-text">Tools & Others</span>
+          <span class="expand-icon">▶</span>
+        </div>
+        <ul class="sidebar-menu" id="tools-menu">
+          <li><a href="/git/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="language-logo">
+            Git
+          </a></li>
+          <li><a href="/docker/" class="sidebar-link">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="language-logo">
+            Docker
+          </a></li>
+          <li><a href="/aws/" class="sidebar-link">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" class="language-logo">
+            AWS
+          </a></li>
+        </ul>
+      </div>
+    </nav>
+  )}
+</aside>
+
+<!-- Sidebar Overlay for mobile -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>

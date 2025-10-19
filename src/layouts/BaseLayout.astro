@@ -1,5 +1,6 @@
 ---
 import SidebarCounts from '../components/SidebarCounts.astro';
+import DynamicSidebar from '../components/DynamicSidebar.astro';
 
 export interface Props {
   title: string;
@@ -92,119 +93,8 @@ const { title, description = "Learn web development from the ground up! Comprehe
            <!-- Sidebar Counts Component -->
            <SidebarCounts />
            
-           <!-- Sidebar -->
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <h2>📚 Course Categories</h2>
-    </div>
-               <nav class="sidebar-nav">
-                 <div class="sidebar-section">
-                   <div class="sidebar-section-title expandable" data-section="web-dev">
-                     <span class="section-title-text">Web Development</span>
-                     <span class="expand-icon">▶</span>
-                   </div>
-                   <ul class="sidebar-menu" id="web-dev-menu">
-                     <li><a href="/html/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="language-logo">
-                       HTML
-                     </a></li>
-                     <li><a href="/css/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="language-logo">
-                       CSS
-                     </a></li>
-                     <li><a href="/javascript/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="language-logo">
-                       JavaScript
-                     </a></li>
-                   </ul>
-                 </div>
-      
-                 <div class="sidebar-section">
-                   <div class="sidebar-section-title expandable" data-section="frontend">
-                     <span class="section-title-text">Frontend Frameworks</span>
-                     <span class="expand-icon">▶</span>
-                   </div>
-                   <ul class="sidebar-menu" id="frontend-menu">
-                     <li><a href="/react/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="language-logo">
-                       React
-                     </a></li>
-                     <li><a href="/vue/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js" class="language-logo">
-                       Vue.js
-                     </a></li>
-                     <li><a href="/angular/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" alt="Angular" class="language-logo">
-                       Angular
-                     </a></li>
-                   </ul>
-                 </div>
-      
-                 <div class="sidebar-section">
-                   <div class="sidebar-section-title expandable" data-section="backend">
-                     <span class="section-title-text">Backend Development</span>
-                     <span class="expand-icon">▶</span>
-                   </div>
-                   <ul class="sidebar-menu" id="backend-menu">
-                     <li><a href="/nodejs/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="language-logo">
-                       Node.js
-                     </a></li>
-                     <li><a href="/python/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="language-logo">
-                       Python
-                     </a></li>
-                     <li><a href="/php/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="language-logo">
-                       PHP
-                     </a></li>
-                   </ul>
-                 </div>
-      
-                 <div class="sidebar-section">
-                   <div class="sidebar-section-title expandable" data-section="database">
-                     <span class="section-title-text">Database</span>
-                     <span class="expand-icon">▶</span>
-                   </div>
-                   <ul class="sidebar-menu" id="database-menu">
-                     <li><a href="/mysql/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="language-logo">
-                       MySQL
-                     </a></li>
-                     <li><a href="/mongodb/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="language-logo">
-                       MongoDB
-                     </a></li>
-                     <li><a href="/postgresql/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="language-logo">
-                       PostgreSQL
-                     </a></li>
-                   </ul>
-                 </div>
-      
-                 <div class="sidebar-section">
-                   <div class="sidebar-section-title expandable" data-section="tools">
-                     <span class="section-title-text">Tools & Others</span>
-                     <span class="expand-icon">▶</span>
-                   </div>
-                   <ul class="sidebar-menu" id="tools-menu">
-                     <li><a href="/git/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="language-logo">
-                       Git
-                     </a></li>
-                     <li><a href="/docker/" class="sidebar-link">
-                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="language-logo">
-                       Docker
-                     </a></li>
-                     <li><a href="/aws/" class="sidebar-link">
-                       <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" class="language-logo">
-                       AWS
-                     </a></li>
-                   </ul>
-                 </div>
-    </nav>
-  </aside>
+           <!-- Dynamic Sidebar -->
+           <DynamicSidebar />
 
   <!-- Top Navigation Bar -->
   <header class="header">
